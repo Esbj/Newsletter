@@ -11,9 +11,32 @@ router.get('/', function(req, res, next) {
   })
 });
 
+/* POST Create new user */
+router.post('/', function(req, res) {
+  fs.readFile('users.json', (err, data)=>{
+    if(err)throw err;
+    var users = JSON.parse(data)
+    var newUser = 
+    {
+      "userName": req.body.userName,
+      "password": req.body.password,
+      "email": req.body.email,
+      "wantsEmail": req.body.wantsEmail
+    }
+    users.push(newUser);
+    var saveUser = JSON.stringify(users, null, 2);
+
+    fs.writeFile('users.json', saveUser, (err, data)=>{if (err) throw err;})
+
+    res.send("Ny användare skapad!");
+    res.send(newUser);
+  })
+})
+
+
 /* POST Log In user */
 
-router.post('/authorize', function(req, res) {
+router.post('/logIn', (req, res) =>{
   fs.readFile('users.json', (err, data) =>{
     if (err) throw err;
 
@@ -31,7 +54,5 @@ router.post('/authorize', function(req, res) {
     res.send(logInAllowed);
   })
 })
-
-
 
 module.exports = router;
