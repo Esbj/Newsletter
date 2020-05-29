@@ -2,15 +2,6 @@ var express = require('express');
 var router = express.Router();
 var fs = require('fs');
 
-/* GET All users. */
-router.get('/', function(req, res, next) {
-  fs.readFile('users.json', (err, data) =>{
-    if (err) throw err;
-    var users = JSON.parse(data);
-    res.send(users);
-  })
-});
-
 /* POST Create new user */
 router.post('/', function(req, res) {
   fs.readFile('users.json', (err, data)=>{

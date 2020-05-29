@@ -15,6 +15,6 @@
         "userName": "Karin",
         "password": "12345",
         "email": "karin@gmail.com",
-        "wantsEmail": false
+        "wantsEmail": true
     }
 ]
